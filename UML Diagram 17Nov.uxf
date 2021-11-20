@@ -1,40 +1,44 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.3.0">
-  <zoom_level>10</zoom_level>
+  <zoom_level>7</zoom_level>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1320</x>
-      <y>830</y>
-      <w>610</w>
-      <h>280</h>
+      <x>147</x>
+      <y>665</y>
+      <w>427</w>
+      <h>224</h>
     </coordinates>
-    <panel_attributes>AccountManagement
+    <panel_attributes>User
 --
 - email: String
 - password: String
 - username: String
-- avatarURL: String
-- playerId: String
+- avatar: Avatar
+- playerId: int
+- blocked: boolean
 --
 + login(email: String, password: String): String
-+ register(email: String, password: String, username: String, avatarURL:String)
-+ updateProfile(username:String, avatarURL:String)
-+ updateProfile(username:String, avatarURL:String, oldPassword:String, newPassword:String)
++ register(email: String, password: String, username: String, avatar: Avatar)
++ updateProfile(username:String, avatar: Avatar)
++ updateProfile(username:String, avatar: Avatar, oldPassword:String, newPassword:String)
 + forgetPassword(email:String)
 + resetPassword(token:String, newPassword:String, confirmPassword:String)
 + getEmail(): String
-+ getAvatar(): String
-+ getUsername(): String</panel_attributes>
++ getAvatar(): Avatar
++ getUsername(): String
++ blockPlayer(): void
++ unblockPlayer(): void
+</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>1400</x>
-      <y>730</y>
-      <w>140</w>
-      <h>70</h>
+      <x>224</x>
+      <y>595</y>
+      <w>98</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>The login function 
 returns a token which
@@ -44,10 +48,10 @@ is a String.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1690</x>
-      <y>1910</y>
-      <w>540</w>
-      <h>190</h>
+      <x>511</x>
+      <y>1078</y>
+      <w>378</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>/Piece/
 --
@@ -66,10 +70,10 @@ is a String.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1690</x>
-      <y>1720</y>
-      <w>160</w>
-      <h>140</h>
+      <x>532</x>
+      <y>917</y>
+      <w>112</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>Point
 --
@@ -85,10 +89,10 @@ is a String.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1940</x>
-      <y>2090</y>
-      <w>30</w>
-      <h>120</h>
+      <x>686</x>
+      <y>1204</y>
+      <w>21</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
@@ -96,10 +100,10 @@ is a String.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1920</x>
-      <y>2370</y>
-      <w>520</w>
-      <h>120</h>
+      <x>672</x>
+      <y>1400</y>
+      <w>364</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Knight
 --
@@ -111,10 +115,10 @@ is a String.</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1940</x>
-      <y>2180</y>
-      <w>600</w>
-      <h>270</h>
+      <x>686</x>
+      <y>1267</y>
+      <w>420</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;10.0;580.0;10.0;580.0;250.0;500.0;250.0</additional_attributes>
@@ -122,67 +126,31 @@ is a String.</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2060</x>
-      <y>1100</y>
-      <w>440</w>
-      <h>160</h>
-    </coordinates>
-    <panel_attributes>Board
---
-- boardState: Square[8][8]
---
-+ initializeBoard(): void
-+ renderBoard(): void
-+ getSquare(point: Point): Square
-+ getBoardState(): Square[8][8]</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>3410</x>
-      <y>1460</y>
-      <w>330</w>
-      <h>220</h>
+      <x>1666</x>
+      <y>1106</y>
+      <w>196</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>SinglePlayerChessGame
 --
-- player: Player
-- computer: Computer
-- playerSelectedSquare: Square
-- playerDestinationSquare: Square
+- player: HumanPlayer
+- computer: ComputerPlayer
 - playerTurn: boolean
 --
 + playGame(): void
 + saveReplay(): void
 + updateLeaderboard(): void
-+ setPlayerSelectedSquare(TBD): void
-+ setPlayerTurn(playerTurn: boolean): void</panel_attributes>
++ setPlayerTurn(playerTurn: boolean): void
++ quitGame(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>850</x>
-      <y>1480</y>
-      <w>630</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>PlayerMove
---
-- player: Player
---
-+ PlayerMove(player: Player, piece: Piece, fromSquare: Square, toSquare: Square): PlayerMove
-+ getPlayer(): Player</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>2180</x>
-      <y>1660</y>
-      <w>440</w>
-      <h>140</h>
+      <x>700</x>
+      <y>917</y>
+      <w>308</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>Square
 --
@@ -196,30 +164,19 @@ is a String.</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>2260</x>
-      <y>1250</y>
-      <w>40</w>
-      <h>430</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
-m1=1
-m2=64</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;410.0</additional_attributes>
-  </element>
-  <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3600</x>
-      <y>1150</y>
-      <w>330</w>
-      <h>210</h>
+      <x>1764</x>
+      <y>868</y>
+      <w>231</w>
+      <h>175</h>
     </coordinates>
     <panel_attributes>/ChessGame/
 --
-# kingChecked: String
-# kingCheckmated: String
+# blackInCheck: boolean
+# whiteInCheck: boolean
+# blackCheckmated: boolean
+# whiteCheckmated: boolean
 --
 /+ playGame(): void/
 /+ addMove(move: Move): void/
@@ -228,129 +185,31 @@ m2=64</panel_attributes>
 + isEnded(): boolean
 + promotablePawnSquare(): Square 
 /+ saveReplay(): Replay/
-/+ updateLeaderboard(): Leaderboard/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>2340</x>
-      <y>1490</y>
-      <w>300</w>
-      <h>140</h>
-    </coordinates>
-    <panel_attributes>Player
---
-- user: User
-- color: int
---
-+ Player(user: User, color: int): Player
-+ getPlayerUsername(): String
-+ getPlayerId(): String
-+ getColor(): int</panel_attributes>
+/+ updateLeaderboard(): Leaderboard/
+/+ quitGame(): void/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>2500</x>
-      <y>1400</y>
-      <w>140</w>
+      <x>1911</x>
+      <y>644</y>
+      <w>133</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>If gameEnded is true and 
+neither of blackWin or 
+whiteWin is true then the 
+game was drawn.</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>3003</x>
+      <y>217</y>
+      <w>217</w>
       <h>70</h>
-    </coordinates>
-    <panel_attributes>Player is used in 
-chess game </panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>4110</x>
-      <y>710</y>
-      <w>130</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Domain for result
---
-"BLACK_WIN"
-"WHITE_WIN"
-"DRAW"</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>2340</x>
-      <y>1390</y>
-      <w>130</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Domain for color
---
-BLACK: 0
-WHITE: 1</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>3570</x>
-      <y>1000</y>
-      <w>190</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Domain for kingChecked
---
-"BLACK_IN_CHECK"
-"WHITE_IN_CHECK"
-"NONE"</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLNote</id>
-    <coordinates>
-      <x>3770</x>
-      <y>1000</y>
-      <w>190</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Domain for kingCheckmated
---
-"BLACK_CHECKMATED"
-"WHITE_CHECKMATED"
-"NONE"</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>4680</x>
-      <y>0</y>
-      <w>290</w>
-      <h>200</h>
-    </coordinates>
-    <panel_attributes>/Replay/
---
-# gameId: String
-# gameMoves: List&lt;Moves&gt;
-# moveNumber: int
-# board: Board
---
-+ play(): void
-+ getMoveNumber(): int
-+ playFromMove(moveNumber: int): void
-+ nextMove(): void
-+ lastMove(): void
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>6340</x>
-      <y>1050</y>
-      <w>310</w>
-      <h>110</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Computer
@@ -363,31 +222,29 @@ Computer
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>6000</x>
-      <y>1300</y>
-      <w>330</w>
-      <h>170</h>
+      <x>2765</x>
+      <y>385</y>
+      <w>231</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>RookieComputer
 --
 - squaresOccupied: List&lt;Square&gt;
-- color: int
 - DIFFICULTY_LEVEL: int = 0
 --
-+ RookieComputer(color: String): RookieComputer
 + checkOccupiedSquares(): void
-+ getOccupiedSquares(): List&lt;Piece&gt;
++ getOccupiedSquares(): List&lt;Square&gt;
 + generateMove(): Move
-+ getColor(): String</panel_attributes>
++ getDifficulty(): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>6470</x>
-      <y>1150</y>
-      <w>30</w>
-      <h>170</h>
+      <x>3094</x>
+      <y>280</y>
+      <w>21</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
     <additional_attributes>10.0;10.0;10.0;150.0</additional_attributes>
@@ -395,38 +252,37 @@ Computer
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>5530</x>
-      <y>1180</y>
-      <w>370</w>
-      <h>90</h>
+      <x>2268</x>
+      <y>280</y>
+      <w>238</w>
+      <h>42</h>
     </coordinates>
     <panel_attributes>ComputerFactory
 --
-+ createComputer(difficulty: String, color: int): Computer</panel_attributes>
++ createComputer(difficulty: int, color: int): Computer</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>5630</x>
-      <y>1080</y>
-      <w>160</w>
-      <h>80</h>
+      <x>2317</x>
+      <y>196</y>
+      <w>112</w>
+      <h>56</h>
     </coordinates>
-    <panel_attributes>Domain for difficulty
---
-"EASY"
-"MEDIUM"
-"HARD"</panel_attributes>
+    <panel_attributes>Domain for difficulty:
+ROOKIE = 0
+INTERMEDIATE = 1
+GRAND_MASTER = 2</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>5950</x>
-      <y>1030</y>
-      <w>1090</w>
-      <h>480</h>
+      <x>2751</x>
+      <y>203</y>
+      <w>721</w>
+      <h>294</h>
     </coordinates>
     <panel_attributes/>
     <additional_attributes/>
@@ -434,64 +290,60 @@ Computer
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>5700</x>
-      <y>1260</y>
-      <w>270</w>
-      <h>50</h>
+      <x>2499</x>
+      <y>287</y>
+      <w>266</w>
+      <h>28</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 creates</panel_attributes>
-    <additional_attributes>250.0;30.0;10.0;30.0;10.0;10.0</additional_attributes>
+    <additional_attributes>360.0;20.0;10.0;20.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>6340</x>
-      <y>1300</y>
-      <w>330</w>
-      <h>170</h>
+      <x>3003</x>
+      <y>385</y>
+      <w>231</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>IntermediateComputer
 --
 - squaresOccupied: List&lt;Square&gt;
-- color: int
 - DIFFICULTY_LEVEL: int = 1
 --
-+ MediumComputer(color: int): MediumComputer
 + checkOccupiedSquares(): void
-+ getOccupiedSquares(): List&lt;Piece&gt;
++ getOccupiedSquares(): List&lt;Square&gt;
 + generateMove(): Move
-+ getColor(): String</panel_attributes>
++ getDifficulty(): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>6680</x>
-      <y>1300</y>
-      <w>310</w>
-      <h>170</h>
+      <x>3241</x>
+      <y>385</y>
+      <w>217</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>GrandMasterComputer
 --
 - squaresOccupied: List&lt;Square&gt;
-- color: int
 - DIFFICULTY_LEVEL: int = 2
 --
-+ HardComputer(color: int): HardComputer
 + checkOccupiedSquares(): void
-+ getOccupiedSquares(): List&lt;Piece&gt;
++ getOccupiedSquares(): List&lt;Square&gt;
 + generateMove(): Move
-+ getColor(): String</panel_attributes>
++ getDifficulty(): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>6140</x>
-      <y>1220</y>
-      <w>340</w>
-      <h>100</h>
+      <x>2863</x>
+      <y>329</y>
+      <w>238</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>320.0;10.0;10.0;10.0;10.0;80.0</additional_attributes>
@@ -499,10 +351,10 @@ creates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>6460</x>
-      <y>1220</y>
-      <w>400</w>
-      <h>100</h>
+      <x>3087</x>
+      <y>329</y>
+      <w>280</w>
+      <h>70</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
     <additional_attributes>10.0;10.0;380.0;10.0;380.0;80.0</additional_attributes>
@@ -510,10 +362,10 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1920</x>
-      <y>2220</y>
-      <w>520</w>
-      <h>120</h>
+      <x>672</x>
+      <y>1295</y>
+      <w>364</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Pawn
 --
@@ -526,10 +378,10 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1920</x>
-      <y>2520</y>
-      <w>520</w>
-      <h>120</h>
+      <x>672</x>
+      <y>1505</y>
+      <w>364</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Queen
 --
@@ -541,10 +393,10 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1920</x>
-      <y>2670</y>
-      <w>520</w>
-      <h>120</h>
+      <x>672</x>
+      <y>1610</y>
+      <w>364</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Bishop
 --
@@ -556,10 +408,10 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1920</x>
-      <y>2820</y>
-      <w>520</w>
-      <h>120</h>
+      <x>672</x>
+      <y>1715</y>
+      <w>364</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Rook
 --
@@ -571,10 +423,10 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1920</x>
-      <y>2980</y>
-      <w>520</w>
-      <h>120</h>
+      <x>672</x>
+      <y>1827</y>
+      <w>364</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>King
 --
@@ -586,10 +438,10 @@ creates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2430</x>
-      <y>2420</y>
-      <w>110</w>
-      <h>180</h>
+      <x>1029</x>
+      <y>1435</y>
+      <w>77</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>90.0;10.0;90.0;160.0;10.0;160.0</additional_attributes>
@@ -597,10 +449,10 @@ creates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2430</x>
-      <y>2570</y>
-      <w>110</w>
-      <h>180</h>
+      <x>1029</x>
+      <y>1540</y>
+      <w>77</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>90.0;10.0;90.0;160.0;10.0;160.0</additional_attributes>
@@ -608,10 +460,10 @@ creates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2430</x>
-      <y>2720</y>
-      <w>110</w>
-      <h>190</h>
+      <x>1029</x>
+      <y>1645</y>
+      <w>77</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>90.0;10.0;90.0;170.0;10.0;170.0</additional_attributes>
@@ -619,10 +471,10 @@ creates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2430</x>
-      <y>2880</y>
-      <w>110</w>
-      <h>180</h>
+      <x>1029</x>
+      <y>1757</y>
+      <w>77</w>
+      <h>126</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>90.0;10.0;90.0;160.0;10.0;160.0</additional_attributes>
@@ -630,10 +482,10 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1360</x>
-      <y>2220</y>
-      <w>520</w>
-      <h>120</h>
+      <x>280</x>
+      <y>1295</y>
+      <w>364</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>Checker
 --
@@ -646,10 +498,10 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1360</x>
-      <y>2380</y>
-      <w>520</w>
-      <h>120</h>
+      <x>280</x>
+      <y>1407</y>
+      <w>364</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>KingChecker
 --
@@ -661,14 +513,15 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>4430</x>
-      <y>860</y>
-      <w>340</w>
-      <h>150</h>
+      <x>2317</x>
+      <y>686</y>
+      <w>238</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>Leaderboard
 --
 + readRecordsFromDB(): void
++ saveRecordsToDB(): void
 + resetLeaderboard(): void
 + getRecords(): List&lt;LeaderboardRecord&gt;
 + sortRecords(criteria: int): void
@@ -680,65 +533,44 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3760</x>
-      <y>1460</y>
-      <w>320</w>
-      <h>310</h>
+      <x>1876</x>
+      <y>1106</y>
+      <w>210</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>MultiPlayerChessGame
 --
-- player1: Player
-- player2: Player
-- player1SelectedSquare: Square
-- player2SelectedSquare: Square
-- player1DestinationSquare: Square
-- player2DestinationSquare: Square
+- player1: HumanPlayer
+- player2: HumanPlayer
 - player1Turn: boolean
 - player2Turn: boolean
 --
 + playGame(): void
 + saveReplay(): void
 + updateLeaderboard(): void
-+ setPlayer1SelectedSquare(TBD): void
-+ setPlayer2SelectedSquare(TBD): void
 + setPlayer1Turn(player1Turn: boolean): void
-+ setPlayer1Turn(player2Turn: boolean): void
-</panel_attributes>
++ setPlayer2Turn(player2Turn: boolean): void
++ quitGame(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3560</x>
-      <y>1350</y>
-      <w>210</w>
-      <h>130</h>
+      <x>1736</x>
+      <y>1036</y>
+      <w>147</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;110.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>3230</x>
-      <y>1160</y>
-      <w>220</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>Lobby
---
-- usersQueue: Queue&lt;User&gt;
---
-+ matchUp(): Player[2]</panel_attributes>
-    <additional_attributes/>
+    <additional_attributes>190.0;10.0;190.0;40.0;10.0;40.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3740</x>
-      <y>1390</y>
-      <w>210</w>
-      <h>90</h>
+      <x>1862</x>
+      <y>1057</y>
+      <w>147</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;10.0;190.0;10.0;190.0;70.0</additional_attributes>
@@ -746,33 +578,37 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>4020</x>
-      <y>850</y>
-      <w>330</w>
-      <h>200</h>
+      <x>2058</x>
+      <y>637</y>
+      <w>231</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>/Game/
 --
+# gameId: String
 # board: Board
 # movesMade: List&lt;Move&gt;
 # result: String
+# blackWin: boolean
+# whiteWin: boolean
 # gameEnded: boolean
-# gameId: String
 # moveCounter: int
+# turnMaxTime: int
 --
 /+ playGame(): void/
 /+ addMove(move: Move): void/
 /+ saveReplay(): Replay/
-/+ updateLeaderboard(): Leaderboard/</panel_attributes>
+/+ updateLeaderboard(): Leaderboard/
+/+ quitGame(): void/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>4450</x>
-      <y>1140</y>
-      <w>330</w>
-      <h>210</h>
+      <x>2359</x>
+      <y>868</y>
+      <w>231</w>
+      <h>168</h>
     </coordinates>
     <panel_attributes>/CheckersGame/
 --
@@ -784,87 +620,83 @@ creates</panel_attributes>
 + isEnded(): boolean
 + promotableCheckerSquare(): Square 
 /+ saveReplay(): Replay/
-/+ updateLeaderboard(): Leaderboard/</panel_attributes>
+/+ updateLeaderboard(): Leaderboard/
+/+ quitGame(): void/</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>3770</x>
-      <y>1040</y>
-      <w>410</w>
-      <h>130</h>
+      <x>1883</x>
+      <y>819</y>
+      <w>287</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>390.0;10.0;390.0;60.0;10.0;60.0;10.0;110.0</additional_attributes>
+    <additional_attributes>390.0;10.0;390.0;50.0;10.0;50.0;10.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>4150</x>
-      <y>1090</y>
-      <w>490</w>
-      <h>70</h>
+      <x>2149</x>
+      <y>847</y>
+      <w>343</w>
+      <h>35</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;470.0;10.0;470.0;50.0</additional_attributes>
+    <additional_attributes>10.0;10.0;470.0;10.0;470.0;30.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>4290</x>
-      <y>1450</y>
-      <w>330</w>
-      <h>190</h>
+      <x>2282</x>
+      <y>1099</y>
+      <w>196</w>
+      <h>119</h>
     </coordinates>
     <panel_attributes>SinglePlayerCheckersGame
 --
-- player: Player
-- computer: Computer
-- playerSelectedSquare: Square
+- player: HumanPlayer
+- computer: ComputerPlayer
 - playerTurn: boolean
 --
 + playGame(): void
 + saveReplay(): void
 + updateLeaderboard(): void
-+ setPlayerSelectedSquare(TBD): void
-+ setPlayerTurn(playerTurn: boolean): void</panel_attributes>
++ setPlayerTurn(playerTurn: boolean): void
++ quitGame(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>4640</x>
-      <y>1450</y>
-      <w>320</w>
-      <h>270</h>
+      <x>2492</x>
+      <y>1099</y>
+      <w>210</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>MultiPlayerCheckersGame
 --
-- player1: Player
-- player2: Player
-- player1SelectedSquare: Square
-- player2SelectedSquare: Square
+- player1: HumanPlayer
+- player2: HumanPlayer
 - player1Turn: boolean
 - player2Turn: boolean
 --
 + playGame(): void
 + saveReplay(): void
 + updateLeaderboard(): void
-+ setPlayer1SelectedSquare(TBD): void
-+ setPlayer2SelectedSquare(TBD): void
 + setPlayer1Turn(player1Turn: boolean): void
 + setPlayer1Turn(player2Turn: boolean): void
-</panel_attributes>
++ quitGame(): void</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>4620</x>
-      <y>1380</y>
-      <w>210</w>
-      <h>90</h>
+      <x>2478</x>
+      <y>1050</y>
+      <w>147</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;10.0;190.0;10.0;190.0;70.0</additional_attributes>
@@ -872,21 +704,21 @@ creates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>4440</x>
-      <y>1340</y>
-      <w>210</w>
-      <h>130</h>
+      <x>2352</x>
+      <y>1029</y>
+      <w>147</w>
+      <h>84</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;50.0;10.0;50.0;10.0;110.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;40.0;10.0;40.0;10.0;100.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1280</x>
-      <y>2180</y>
-      <w>690</w>
-      <h>280</h>
+      <x>224</x>
+      <y>1267</y>
+      <w>483</w>
+      <h>196</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>670.0;10.0;10.0;10.0;10.0;260.0;80.0;260.0</additional_attributes>
@@ -894,10 +726,10 @@ creates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1280</x>
-      <y>2270</y>
-      <w>100</w>
-      <h>30</h>
+      <x>224</x>
+      <y>1330</y>
+      <w>70</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;10.0;80.0;10.0</additional_attributes>
@@ -905,10 +737,10 @@ creates</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2430</x>
-      <y>2280</y>
-      <w>110</w>
-      <h>30</h>
+      <x>1029</x>
+      <y>1337</y>
+      <w>77</w>
+      <h>21</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>90.0;10.0;10.0;10.0</additional_attributes>
@@ -916,48 +748,45 @@ creates</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>5060</x>
-      <y>860</y>
-      <w>300</w>
-      <h>150</h>
+      <x>2625</x>
+      <y>763</y>
+      <w>210</w>
+      <h>161</h>
     </coordinates>
     <panel_attributes>LeaderboardRecord
 --
 - userId: String
+- rank: int
 - wins: int
 - losses: int
 --
 + updateRecord(wins: int, losses: int): void
 + updateRecord(wins: int: void
-+ updateRecord(losses: int): void</panel_attributes>
++ updateRecord(losses: int): void
++ setRank(rank: int): void
++ getRank(): int
++ getWins(): int
++ getLosses(): int</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1820</x>
-      <y>760</y>
-      <w>100</w>
-      <h>30</h>
-    </coordinates>
-    <panel_attributes>User</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1250</x>
-      <y>1220</y>
-      <w>470</w>
-      <h>180</h>
+      <x>2275</x>
+      <y>0</y>
+      <w>455</w>
+      <h>154</h>
     </coordinates>
     <panel_attributes>/Move/
 --
-# moveNumber: int
-# pieceId: int
-# fromSquare: Square
-# toSquare: Square
+- moveNumber: int
+- player: Player
+- pieceId: int
+- fromSquare: Square
+- toSquare: Square
 --
++ Move(moveNumber: int, player: Player, piece: Piece, fromSquare: Square, toSquare: Square): Move
++ getPlayer(): Player
 + getFromSquare(): Square
 + getToSquare(): Square
 + getPieceId(): int
@@ -965,135 +794,26 @@ creates</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>1530</x>
-      <y>1480</y>
-      <w>690</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>ComputerMove
---
-- difficultyLevel: int
---
-+ ComputerMove(difficultyLevel: int, piece: Piece, fromSquare: Square, toSquare: Square): ComputerMove
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
     <id>Relation</id>
     <coordinates>
-      <x>1080</x>
-      <y>1390</y>
-      <w>420</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>400.0;10.0;400.0;50.0;10.0;50.0;10.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1470</x>
-      <y>1390</y>
-      <w>390</w>
-      <h>110</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;10.0;50.0;370.0;50.0;370.0;90.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>4140</x>
-      <y>270</y>
-      <w>660</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>SingleplayerReplay
---
-- playerId: String
-- playerWon: boolean
-- computerWon: boolean
---
-+ SingleplayerReplay(gameId: String, playerId: String, gameMoves: List&lt;Moves&gt;): SingleplayerReplay</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>4850</x>
-      <y>270</y>
-      <w>720</w>
-      <h>150</h>
-    </coordinates>
-    <panel_attributes>MultiplayerReplay
---
-- player1Id: String
-- player2Id: String
-- player1Won: boolean
-- player2Won: boolean
---
-+ Multiplayer(gameId: String, player1Id: String, player2Id: String, gameMoves: List&lt;Moves&gt;): MultiplayerReplay</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>4450</x>
-      <y>190</y>
-      <w>390</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>370.0;10.0;370.0;50.0;10.0;50.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>4810</x>
-      <y>230</y>
-      <w>400</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;380.0;10.0;380.0;40.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>4760</x>
-      <y>910</y>
-      <w>320</w>
-      <h>50</h>
+      <x>2548</x>
+      <y>721</y>
+      <w>203</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;&lt;&lt;&lt;-
 m1=1
 m2=n
 - records {ordered, unique}</panel_attributes>
-    <additional_attributes>10.0;20.0;300.0;20.0</additional_attributes>
+    <additional_attributes>10.0;20.0;260.0;20.0;260.0;60.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3700</x>
-      <y>810</y>
-      <w>250</w>
-      <h>120</h>
-    </coordinates>
-    <panel_attributes>Connection
---
-- ip: String
---</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>2650</x>
-      <y>630</y>
-      <w>150</w>
-      <h>70</h>
+      <x>1099</x>
+      <y>490</y>
+      <w>105</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>&lt;&lt;interface&gt;&gt;
 Board
@@ -1104,10 +824,10 @@ Board
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2230</x>
-      <y>760</y>
-      <w>230</w>
-      <h>160</h>
+      <x>749</x>
+      <y>784</y>
+      <w>217</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>UnstyledBoard
 --
@@ -1115,17 +835,17 @@ Board
 --
 + initializeBoard(): void
 + renderBoard(): void
-+ getSquare(point: Point): Square
++ getSquareOnClick(e: MouseEvent): Square
 + getBoardState(): Square[8][8]</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2770</x>
-      <y>760</y>
-      <w>330</w>
-      <h>160</h>
+      <x>1246</x>
+      <y>637</y>
+      <w>105</w>
+      <h>56</h>
     </coordinates>
     <panel_attributes>/BoardDecorator/
 --
@@ -1137,10 +857,10 @@ Board
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2590</x>
-      <y>970</y>
-      <w>330</w>
-      <h>130</h>
+      <x>1057</x>
+      <y>777</y>
+      <w>231</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>BoardTheme1
 --
@@ -1156,10 +876,10 @@ Board
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2940</x>
-      <y>970</y>
-      <w>330</w>
-      <h>130</h>
+      <x>1302</x>
+      <y>777</y>
+      <w>231</w>
+      <h>91</h>
     </coordinates>
     <panel_attributes>BoardTheme2
 --
@@ -1174,170 +894,85 @@ Board
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2340</x>
-      <y>690</y>
-      <w>400</w>
-      <h>90</h>
+      <x>826</x>
+      <y>532</y>
+      <w>336</w>
+      <h>266</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>380.0;10.0;380.0;40.0;10.0;40.0;10.0;70.0</additional_attributes>
+    <additional_attributes>460.0;10.0;460.0;90.0;10.0;90.0;10.0;360.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2690</x>
-      <y>720</y>
-      <w>250</w>
-      <h>60</h>
+      <x>1134</x>
+      <y>588</y>
+      <w>168</w>
+      <h>63</h>
     </coordinates>
     <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;230.0;10.0;230.0;40.0</additional_attributes>
+    <additional_attributes>10.0;10.0;220.0;10.0;220.0;70.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2740</x>
-      <y>910</y>
-      <w>210</w>
-      <h>80</h>
+      <x>1162</x>
+      <y>686</y>
+      <w>147</w>
+      <h>105</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>190.0;10.0;190.0;40.0;10.0;40.0;10.0;60.0</additional_attributes>
+    <additional_attributes>190.0;10.0;190.0;90.0;10.0;90.0;10.0;130.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2910</x>
-      <y>940</y>
-      <w>220</w>
-      <h>50</h>
+      <x>1281</x>
+      <y>742</y>
+      <w>154</w>
+      <h>49</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;10.0;200.0;10.0;200.0;30.0</additional_attributes>
+    <additional_attributes>10.0;10.0;200.0;10.0;200.0;50.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2450</x>
-      <y>810</y>
-      <w>340</w>
-      <h>40</h>
+      <x>959</x>
+      <y>658</y>
+      <w>301</w>
+      <h>189</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 styles</panel_attributes>
-    <additional_attributes>10.0;20.0;320.0;20.0</additional_attributes>
+    <additional_attributes>10.0;250.0;100.0;250.0;100.0;10.0;410.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLNote</id>
     <coordinates>
-      <x>3010</x>
-      <y>600</y>
-      <w>310</w>
-      <h>120</h>
+      <x>1351</x>
+      <y>504</y>
+      <w>217</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>The renderBoard method renders each
 square of the board and the piece on a square 
 if any. It involves the usage of both the 
 renderSquare and renderPiece methods. The 
 coloring of the square and the piece is done 
-according to the theme.</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>0</x>
-      <y>1880</y>
-      <w>520</w>
-      <h>220</h>
-    </coordinates>
-    <panel_attributes>/UnstyledPiece/
---
-# pieceId: int
-# alive: boolean
-# playerId: String
-# color: int
-# belongsTo: Player
---
-+ move(square: Square): void
-+ getLocation(): Point
-/+ getValidMoves(boardState: Square[8[[8], currentSquare: Square): List&lt;Square&gt;/
-/+ renderPiece(): void/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>430</x>
-      <y>1740</y>
-      <w>160</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;interface&gt;&gt;
-Piece
---
-/+ renderPiece(): void/</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>630</x>
-      <y>1880</y>
-      <w>180</w>
-      <h>80</h>
-    </coordinates>
-    <panel_attributes>PieceDecorator
---
-# piece: Piece
---
-+ renderPiece()
-
-</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>240</x>
-      <y>1800</y>
-      <w>290</w>
-      <h>100</h>
-    </coordinates>
-    <panel_attributes>lt=&lt;&lt;.</panel_attributes>
-    <additional_attributes>270.0;10.0;270.0;40.0;10.0;40.0;10.0;80.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>500</x>
-      <y>1830</y>
-      <w>240</w>
-      <h>70</h>
-    </coordinates>
-    <panel_attributes>lt=.</panel_attributes>
-    <additional_attributes>10.0;10.0;220.0;10.0;220.0;50.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLClass</id>
-    <coordinates>
-      <x>610</x>
-      <y>2020</y>
-      <w>150</w>
-      <h>60</h>
-    </coordinates>
-    <panel_attributes>PieceTheme1
---
+according to the theme. So the themed 
+rendering is handled for both the pieces and the
+board.
 </panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2840</x>
-      <y>1180</y>
-      <w>200</w>
-      <h>200</h>
+      <x>1169</x>
+      <y>896</y>
+      <w>140</w>
+      <h>140</h>
     </coordinates>
     <panel_attributes>Color
 --
@@ -1356,30 +991,473 @@ Piece
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2220</x>
-      <y>1370</y>
-      <w>740</w>
-      <h>660</h>
+      <x>882</x>
+      <y>1029</y>
+      <w>371</w>
+      <h>133</h>
     </coordinates>
     <panel_attributes>lt=.&gt;
 uses</panel_attributes>
-    <additional_attributes>10.0;640.0;720.0;640.0;720.0;10.0</additional_attributes>
+    <additional_attributes>10.0;170.0;510.0;170.0;510.0;10.0</additional_attributes>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>3560</x>
-      <y>380</y>
-      <w>300</w>
-      <h>200</h>
+      <x>1694</x>
+      <y>189</y>
+      <w>273</w>
+      <h>364</h>
     </coordinates>
     <panel_attributes>Menu
 --
+- chessSelected: boolean
+- singlePlayerSelected: boolean
+- rookieDifficultySelected: boolean
+- intermediateDifficultySelected: boolean
 - chessLeaderboard: Leaderboard
 - checkersLeaderboard: Leaderboard
-
+- replayList: ReplayList
+- usersList: UserList
+- replayToPlay: Replay
+- viewLeaderboards: boolean
+- viewReplaysList: boolean
 --
++ renderMenu(): void
++ closeMenu(): void
++ selectChess(): void
++ selectCheckers(): void
++ selectMultiplayer(): void
++ selectSingleplayer(): void
++ createGame(): Game
++ showLeaderboard(): void
++ showUsersList(): void
++ showReplays(currentUser: User): void
++ showPlayReplay(): void
++ showProfile(currentUser: User): void
++ showEditProfile(currentUser: User): void
++ showSignupForm(): void
++ showLoginForm(): void
++ submitLoginFormDetails(): void
++ submitSignupFormDetails(): void
++ submitEditProfileDetails(): void
 + exitApp(): void</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1960</x>
+      <y>287</y>
+      <w>322</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+uses</panel_attributes>
+    <additional_attributes>10.0;20.0;440.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1512</x>
+      <y>266</y>
+      <w>119</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>Main
+--
+- mainMenu: Menu
+- currentUser: User
+--
++ main(): void</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>567</x>
+      <y>714</y>
+      <w>84</w>
+      <h>21</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>100.0;10.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>637</x>
+      <y>658</y>
+      <w>161</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>AuthGuard
+--
+- token: String
+--
++ AuthGuard(token:String)
++ isAuthenticated() : boolean
++ isAuthorized() : boolean
++ isPlayer() : boolean
++ isAdmin() : boolean</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLNote</id>
+    <coordinates>
+      <x>0</x>
+      <y>714</y>
+      <w>133</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>Roles are Player and 
+Admin
+bg=white</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2198</x>
+      <y>1281</y>
+      <w>140</w>
+      <h>119</h>
+    </coordinates>
+    <panel_attributes>Connection
+--
+- connectionId: string
+- player1IP: String
+- player2IP: String
+- connectionOn: boolean
+--
+- Connection(): Connection
+- connectionStatus(): boolean
+- terminateConnection(): void
+- updateStatus() : void
+
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2191</x>
+      <y>1463</y>
+      <w>182</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>Lobby
+--
+- usersQueue: Queue&lt;User&gt;
+--
++ matchUp(): MatchUp</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2261</x>
+      <y>1393</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;..</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2331</x>
+      <y>1232</y>
+      <w>280</w>
+      <h>154</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
+m1=1
+m2=1
+- connection
+
+</panel_attributes>
+    <additional_attributes>10.0;180.0;370.0;180.0;370.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1932</x>
+      <y>1239</y>
+      <w>280</w>
+      <h>140</h>
+    </coordinates>
+    <panel_attributes>lt=-&gt;&gt;&gt;&gt;&gt;
+m1=1
+m2=1
+- connection</panel_attributes>
+    <additional_attributes>380.0;170.0;10.0;170.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1701</x>
+      <y>574</y>
+      <w>133</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>/Player/
+--
+# isBlack: boolean
+--
++ isPlayerBlack(): boolean
++ isPlayerWhite(): boolean
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1561</x>
+      <y>714</y>
+      <w>210</w>
+      <h>133</h>
+    </coordinates>
+    <panel_attributes>HumanPlayer
+--
+- user: User
+- selectedSquare: Square
+- destinationSquare: Square
+--
++ getPlayerUsername(): String
++ getPlayerId(): String
++ setSelectedSquare(square: Square): void
++ getSelectedSquare(): Square
++ setDestinationSquare(square: Square): void
++ getDestinationSquare(): Square</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1806</x>
+      <y>714</y>
+      <w>168</w>
+      <h>49</h>
+    </coordinates>
+    <panel_attributes>ComputerPlayer
+--
+- computer: Computer
+--
++ getComputer(): Computer</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1652</x>
+      <y>672</y>
+      <w>126</w>
+      <h>56</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>160.0;10.0;160.0;40.0;10.0;40.0;10.0;60.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1757</x>
+      <y>693</y>
+      <w>105</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;10.0;130.0;10.0;130.0;30.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2527</x>
+      <y>511</y>
+      <w>203</w>
+      <h>91</h>
+    </coordinates>
+    <panel_attributes>Replay
+--
+- gameId: String
+- player1: Player
+- player2: Player
+- player1Won: boolean
+- player2Won: boolean
+- gameMoves: List&lt;Moves&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>826</x>
+      <y>1008</y>
+      <w>21</w>
+      <h>84</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+</panel_attributes>
+    <additional_attributes>10.0;10.0;10.0;100.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>427</x>
+      <y>511</y>
+      <w>203</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>Avatar
+--
+- avatarURL: String
+--
++ getAvatarURL(): String
++ getAvatarURL(): String</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1659</x>
+      <y>35</y>
+      <w>147</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>UserList
+--
+- users: List&lt;User&gt;
+- selectedUser: User
+--
++ loadUsersFromDB(): void
++ blockSelectedUser(): void
++ deleteSelectedUser(): void
++ selectUser(user: User): void
++ getUserList(): List&lt;User&gt;
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1827</x>
+      <y>70</y>
+      <w>336</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>ReplayList
+--
+- replays: List&lt;Replay&gt;
+--
++ loadReplaysFromDB(currentUser: User, chessReplays: boolean): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>2212</x>
+      <y>504</y>
+      <w>203</w>
+      <h>112</h>
+    </coordinates>
+    <panel_attributes>ReplayPlayer
+--
+- moveNumber: int
+- board: Board
+--
++ playReplay(): void
++ getMoveNumber(): int
++ playFromMove(moveNumber: int): void
++ nextMove(): void
++ lastMove(): void
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1960</x>
+      <y>525</y>
+      <w>266</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=.&gt;
+uses</panel_attributes>
+    <additional_attributes>10.0;20.0;360.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>2408</x>
+      <y>553</y>
+      <w>133</w>
+      <h>35</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+- replay
+m1=1
+m2=1</panel_attributes>
+    <additional_attributes>10.0;20.0;170.0;20.0</additional_attributes>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1967</x>
+      <y>1435</y>
+      <w>147</w>
+      <h>105</h>
+    </coordinates>
+    <panel_attributes>MatchUp
+--
+- player1: HumanPlayer
+- player2: HumanPlayer
+- connection: Connection
+--
++ getPlayer1(): HumanPlayer
++ getPlayer2(): HumanPlayer
++ getConnection(): Connection
++ createGame(): Game</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>882</x>
+      <y>399</y>
+      <w>119</w>
+      <h>63</h>
+    </coordinates>
+    <panel_attributes>AvatarSelector
+--
++ loadAvatars(): void
++ selectAvatar(): Avatar</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>504</x>
+      <y>427</y>
+      <w>392</w>
+      <h>98</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m1=1
+m2=n
+avatars</panel_attributes>
+    <additional_attributes>540.0;20.0;10.0;20.0;10.0;120.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>994</x>
+      <y>420</y>
+      <w>714</w>
+      <h>28</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;.
+uses</panel_attributes>
+    <additional_attributes>10.0;20.0;1000.0;20.0</additional_attributes>
   </element>
 </diagram>
